@@ -5,7 +5,7 @@ let cartas = []
 let draw = document.querySelector('#draw')
 let sort = document.querySelector('#sort')
 let contenedor = document.querySelector('.contenedor')
-let cartasOrdenadas = document.querySelector ('.cartasOrdenadas')
+/* let cartasOrdenadas = document.querySelector ('.cartasOrdenadas') */
 
 draw.addEventListener('click', generarCartas)
 sort.addEventListener('click', ordenarcartas)
@@ -64,4 +64,27 @@ function generarCartas() {
 
   }
   console.log(cartas)
+}
+
+function organizadorCartas() {
+  let ordenado = document.querySelector("#cartasOrdenadas");
+  const len = cartas.length;
+  ordenado.innerHTML ="";
+  
+  
+  for (let i = 0; i < len - 1; i++) {
+
+      let min = i; // 0
+      for (let j = i + 1; j < len; j++) {
+          if (cartas[j].nUmero < cartas[min].nUmero) {
+              min = j
+          }
+      }
+      if (min !== i) {
+          const temp = cartas[i].nUmero
+          cartas[i].nUmero = cartas[min].nUmero
+          cartas[min].nUmero = temp
+
+      }
+  }
 }
